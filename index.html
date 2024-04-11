@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Device Movement Demo</title>
+<style>
+  #container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  #movableDiv {
+    width: 400px;
+    height: 400px;
+    background-color: lightblue;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+</head>
+<body>
+<div id="container">
+  <div id="movableDiv"></div>
+</div>
+
+<script>
+  window.addEventListener('deviceorientation', handleOrientation);
+
+  function handleOrientation(event) {
+    // Adjust div position based on device orientation
+    var gamma = event.gamma; // For left-to-right tilting
+    var beta = event.beta;   // For front-to-back tilting
+
+    // Example: Move the div horizontally based on gamma
+    var containerWidth = window.innerWidth;
+    var divWidth = document.getElementById('movableDiv').offsetWidth;
+    var maxX = containerWidth - divWidth;
+    var newX = (gamma / 90) * maxX;
+    document.getElementById('movableDiv').style.left = newX + 'px';
+
+    // Example: Move the div vertically based on beta
+    var containerHeight = window.innerHeight;
+    var divHeight = document.getElementById('movableDiv').offsetHeight;
+    var maxY = containerHeight - divHeight;
+    var newY = (beta / 90) * maxY;
+    document.getElementById('movableDiv').style.top = newY + 'px';
+  }
+</script>
+</body>
+</html>
