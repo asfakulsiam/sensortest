@@ -10,15 +10,19 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the child div */
   }
   #movableDiv {
     width: 400px;
     height: 400px;
     background-color: lightblue;
     position: absolute;
-    top: 50%;
+    /* Remove the top and left positioning */
+    /* top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
   }
 </style>
 </head>
@@ -39,14 +43,14 @@
     var containerWidth = window.innerWidth;
     var divWidth = document.getElementById('movableDiv').offsetWidth;
     var maxX = containerWidth - divWidth;
-    var newX = (gamma / 90) * maxX;
+    var newX = (gamma / 90) * 20; // Adjust the factor for smaller movement
     document.getElementById('movableDiv').style.left = newX + 'px';
 
     // Example: Move the div vertically based on beta
     var containerHeight = window.innerHeight;
     var divHeight = document.getElementById('movableDiv').offsetHeight;
     var maxY = containerHeight - divHeight;
-    var newY = (beta / 90) * maxY;
+    var newY = (beta / 90) * 20; // Adjust the factor for smaller movement
     document.getElementById('movableDiv').style.top = newY + 'px';
   }
 </script>
